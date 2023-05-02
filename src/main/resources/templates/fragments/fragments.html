@@ -9,5 +9,23 @@
   </th:block>
 <body>
 
+<th:block th:fragment="search (colors)">
+
+  <form th:action="@{/cards/filter}" th:object="${filter}" method="post">
+    <label for="name">Cerca per nome</label>
+    <input type="text" id="name" th:field="*{name}">
+    <label for="type">Cerca per tipo</label>
+    <input type="text" id="type" th:field="*{type}">
+    <div class="mb-3 form-check" th:each="color : ${colors}">
+      <input type="checkbox" class="form-check-input" th:id="|color_${color.id}|" th:field="*{colors}"
+             th:value="${color.id}">
+      <label class="form-check-label" th:for="|color_${color.id}|" th:text="${color.name}"></label>
+    </div>
+    <button type="submit" class="btn btn-primary">Cerca</button>
+    <a th:href="@{/cards}" class="btn btn-secondary">Reset i filtri</a>
+  </form>
+
+</th:block>
+
 </body>
 </html>

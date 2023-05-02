@@ -1,29 +1,45 @@
 package com.mtg.mtg.dto;
 
 import com.mtg.mtg.model.Card;
+import com.mtg.mtg.model.Color;
+import com.mtg.mtg.model.ColorIdentity;
+import com.mtg.mtg.model.Rarity;
 import org.springframework.web.multipart.MultipartFile;
 
-public class CardDTO extends Card {
+import java.util.List;
+
+public class CardDTO{
+
+    private String artist;
+
+    private String color;
+
+    private Integer cmc;
+
+    private String flavour;
+
+    private String manaCost;
+
+    private String name;
+
+    private String power;
+
+    private String toughness;
+
+    private List<Color> colors;
+
+    private List<ColorIdentity> colorIdentities;
+
+    private String type;
+
+    private String textDescription;
+
+    private Rarity rarity;
+
+    private String nameSet;
 
     private MultipartFile multipartFile;
 
-    public CardDTO(Card card){
-        this.setArtist(card.getArtist());
-        this.setCmc(card.getCmc());
-        this.setColor(card.getColor());
-        this.setFlavour(card.getFlavour());
-        this.setName(card.getName());
-        this.setManaCost(card.getManaCost());
-        this.setPower(card.getPower());
-        this.setNameSet(card.getNameSet());
-        this.setRarity(card.getRarity());
-        this.setType(card.getType());
-        this.setColorIdentity(card.getColorIdentity());
-        this.setNameSet(card.getNameSet());
-    }
-
-    public CardDTO() {
-    }
 
     public MultipartFile getMultipartFile() {
         return multipartFile;
@@ -31,5 +47,118 @@ public class CardDTO extends Card {
 
     public void setMultipartFile(MultipartFile multipartFile) {
         this.multipartFile = multipartFile;
+    }
+
+    public String getArtist() {
+        return artist;
+    }
+
+    public void setArtist(String artist) {
+        this.artist = artist;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Integer getCmc() {
+        return cmc;
+    }
+
+    public void setCmc(Integer cmc) {
+        this.cmc = cmc;
+    }
+
+    public String getFlavour() {
+        return flavour;
+    }
+
+    public void setFlavour(String flavour) {
+        this.flavour = flavour;
+    }
+
+    public String getManaCost() {
+        return manaCost;
+    }
+
+    public void setManaCost(String manaCost) {
+        this.manaCost = manaCost;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPower() {
+        return power;
+    }
+
+    public void setPower(String power) {
+        this.power = power;
+    }
+
+    public String getToughness() {
+        return toughness;
+    }
+
+    public void setToughness(String toughness) {
+        this.toughness = toughness;
+    }
+
+    public List<Color> getColors() {
+        return colors;
+    }
+
+    public void setColors(List<Color> colors) {
+        this.colors = colors;
+    }
+
+    public List<ColorIdentity> getColorIdentities() {
+        return colorIdentities;
+    }
+
+    public void setColorIdentities(List<ColorIdentity> colorIdentities) {
+        this.colorIdentities = colorIdentities;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTextDescription() {
+        return textDescription;
+    }
+
+    public void setTextDescription(String textDescription) {
+        this.textDescription = textDescription;
+    }
+
+
+    public Rarity getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(Rarity rarity) {
+        this.rarity = rarity;
+    }
+
+    public String getNameSet() {
+        return nameSet;
+    }
+
+    public void setNameSet(String nameSet) {
+        this.nameSet = nameSet;
     }
 }

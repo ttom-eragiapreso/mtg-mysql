@@ -8,6 +8,7 @@ INSERT INTO db_mtg.colors (id, name) VALUES(2, 'Rosso');
 INSERT INTO db_mtg.colors (id, name) VALUES(3, 'Blu');
 INSERT INTO db_mtg.colors (id, name) VALUES(4, 'Nero');
 INSERT INTO db_mtg.colors (id, name) VALUES(5, 'Verde');
+INSERT INTO db_mtg.colors (id, name) VALUES(6, 'Incolore');
 
 INSERT INTO db_mtg.color_identities (id, name) VALUES(1, 'W');
 INSERT INTO db_mtg.color_identities (id, name) VALUES(2, 'R');

@@ -21,7 +21,7 @@ public class Card {
 
     private String manaCost;
 
-    private Integer Cmc;
+    private Integer cmc;
 
     @NotEmpty
     @NotNull
@@ -38,15 +38,16 @@ public class Card {
     private String type;
 
 
+    @Lob
     private String textDescription;
 
-    @ManyToMany
-    private List<Color> color;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Color> colors;
 
     @ManyToMany
-    private List<ColorIdentity> colorIdentity;
+    private List<ColorIdentity> colorIdentities;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Rarity rarity;
 
     @NotNull
@@ -92,11 +93,11 @@ public class Card {
     }
 
     public Integer getCmc() {
-        return Cmc;
+        return cmc;
     }
 
     public void setCmc(Integer Cmc) {
-        this.Cmc = Cmc;
+        this.cmc = Cmc;
     }
 
     public byte[] getFrontImage() {
@@ -131,20 +132,20 @@ public class Card {
         this.textDescription = textDescription;
     }
 
-    public List<Color> getColor() {
-        return color;
+    public List<Color> getColors() {
+        return colors;
     }
 
-    public void setColor(List<Color> color) {
-        this.color = color;
+    public void setColors(List<Color> colors) {
+        this.colors = colors;
     }
 
-    public List<ColorIdentity> getColorIdentity() {
-        return colorIdentity;
+    public List<ColorIdentity> getColorIdentities() {
+        return colorIdentities;
     }
 
-    public void setColorIdentity(List<ColorIdentity> colorIdentity) {
-        this.colorIdentity = colorIdentity;
+    public void setColorIdentities(List<ColorIdentity> colorIdentity) {
+        this.colorIdentities = colorIdentity;
     }
 
     public Rarity getRarity() {

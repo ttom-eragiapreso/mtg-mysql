@@ -13,7 +13,7 @@ public class ColorIdentity {
 
     private String name;
 
-    @ManyToMany(mappedBy = "colorIdentity")
+    @ManyToMany(mappedBy = "colorIdentities")
     private List<Card> cards;
 
     public List<Card> getCards() {

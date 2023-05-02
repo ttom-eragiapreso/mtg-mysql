@@ -13,7 +13,7 @@ public class Color {
 
     private String name;
 
-    @ManyToMany(mappedBy = "color")
+    @ManyToMany(mappedBy = "colors")
     private List<Card> cards;
 
     public List<Card> getCards() {
@@ -38,5 +38,20 @@ public class Color {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Color color = (Color) o;
+
+        return getName().equals(color.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return getName().hashCode();
     }
 }

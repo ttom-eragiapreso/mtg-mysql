@@ -11,6 +11,9 @@
       class="w-50 mx-auto py-5"
       th:object="${card}"
       enctype="multipart/form-data">
+    <ul>
+      <li th:each="error : ${#fields.globalErrors()}" th:text="${error}"></li>
+    </ul>
   <div class="mb-3">
     <label for="name" class="form-label">Nome</label>
     <input type="text"
@@ -47,7 +50,7 @@
 <!--Tutti i colori-->
   <h3>Seleziona tutti i colori della carta</h3>
   <div class="mb-3 form-check" th:each="color : ${colors}">
-    <input type="checkbox" class="form-check-input" th:id="|color_${color.id}|" th:field="*{color}"
+    <input type="checkbox" class="form-check-input" th:id="|color_${color.id}|" th:field="*{colors}"
            th:value="${color.id}">
     <label class="form-check-label" th:for="|color_${color.id}|" th:text="${color.name}"></label>
   </div>
@@ -55,7 +58,7 @@
 <!--Tutti i color identity-->
   <h3>Seleziona tutti i colori che fanno parte anche del testo</h3>
   <div class="mb-3 form-check" th:each="ci : ${color_identities}">
-    <input type="checkbox" class="form-check-input" th:id="|ci_${ci.id}|" th:field="*{colorIdentity}"
+    <input type="checkbox" class="form-check-input" th:id="|ci_${ci.id}|" th:field="*{colorIdentities}"
            th:value="${ci.id}">
     <label class="form-check-label" th:for="|ci_${ci.id}|" th:text="${ci.name}"></label>
   </div>
@@ -63,8 +66,8 @@
   <!--Rarity-->
   <div class="mb-3 form-check">
     <label class="form-check-label" for="rarity">Rarità</label>
-    <select id="rarity">
-      <option>Seleziona la rarità della carta</option>
+    <select id="rarity" th:field="*{rarity}">
+      <option value="">Seleziona la rarità della carta</option>
       <option th:each="rarity : ${rarities}" th:field="*{rarity}"
               th:value="${rarity.id}" th:text="${rarity.name}"></option>
     </select>
