@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="~{fragments/fragments :: head}"></th:block>
+    <title>Aggiungi una nuova carta</title>
+</head>
+<body>
+
+<form th:action="@{/cards/create}"
+      method="post"
+      class="w-50 mx-auto py-5"
+      th:object="${card}"
+      enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nome</label>
+    <input type="text"
+           class="form-control"
+           id="name"
+           th:field="*{name}">
+  </div>
+  <div class="mb-3">
+    <label for="manaCost" class="form-label">Costo di mana</label>
+    <input type="text" class="form-control" id="manaCost"  th:field="*{manaCost}">
+  </div>
+  <div class="mb-3">
+    <label for="cmc" class="form-label">Costo di mana convertito</label>
+    <input type="number" class="form-control" id="cmc" th:field="*{cmc}">
+  </div>
+  <div class="mb-3">
+    <label for="frontImage" class="form-label">Immagine Frontale</label>
+    <input type="file" class="form-control" id="frontImage"
+           th:field="*{multipartFile}">
+  </div>
+  <div class="mb-3">
+    <label for="backImage" class="form-label">Immagine Posteriore</label>
+    <input type="file" class="form-control" id="backImage" >
+  </div>
+  <div class="mb-3">
+    <label for="type" class="form-label">Tipo</label>
+    <input type="text" class="form-control" id="type" th:field="*{type}">
+  </div>
+  <div class="mb-3">
+    <label for="text" class="form-label">Testo</label>
+    <input type="text" class="form-control" id="text"
+           th:field="*{textDescription}">
+  </div>
+<!--Tutti i colori-->
+  <h3>Seleziona tutti i colori della carta</h3>
+  <div class="mb-3 form-check" th:each="color : ${colors}">
+    <input type="checkbox" class="form-check-input" th:id="|color_${color.id}|" th:field="*{color}"
+           th:value="${color.id}">
+    <label class="form-check-label" th:for="|color_${color.id}|" th:text="${color.name}"></label>
+  </div>
+  <!--/tutti i colori-->
+<!--Tutti i color identity-->
+  <h3>Seleziona tutti i colori che fanno parte anche del testo</h3>
+  <div class="mb-3 form-check" th:each="ci : ${color_identities}">
+    <input type="checkbox" class="form-check-input" th:id="|ci_${ci.id}|" th:field="*{colorIdentity}"
+           th:value="${ci.id}">
+    <label class="form-check-label" th:for="|ci_${ci.id}|" th:text="${ci.name}"></label>
+  </div>
+  <!--/tutti i color identity-->
+  <!--Rarity-->
+  <div class="mb-3 form-check">
+    <label class="form-check-label" for="rarity">Rarità</label>
+    <select id="rarity">
+      <option>Seleziona la rarità della carta</option>
+      <option th:each="rarity : ${rarities}" th:field="*{rarity}"
+              th:value="${rarity.id}" th:text="${rarity.name}"></option>
+    </select>
+  </div>
+  <!--/ rarity-->
+  <div class="mb-3">
+    <label for="set" class="form-label">Set</label>
+    <input type="text" class="form-control" id="set" th:field="*{nameSet}">
+  </div>
+  <div class="mb-3">
+    <label for="power" class="form-label">Forza</label>
+    <input type="text" class="form-control" id="power"  th:field="*{power}">
+  </div>
+  <div class="mb-3">
+    <label for="toughness" class="form-label">Costituzione</label>
+    <input type="text" class="form-control" id="toughness"
+           th:field="*{toughness}">
+  </div>
+  <div class="mb-3">
+    <label for="flavour" class="form-label">Commento</label>
+    <input type="text" class="form-control" id="flavour"  th:field="*{flavour}">
+  </div>
+  <div class="mb-3">
+    <label for="artist" class="form-label">Artista</label>
+    <input type="text" class="form-control" id="artist"  th:field="*{artist}">
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Salva</button>
+  <a th:href="@{/}" class="btn btn-info">Torna alla collezione</a>
+</form>
+</body>
+</html>

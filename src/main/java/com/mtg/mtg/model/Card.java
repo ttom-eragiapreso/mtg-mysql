@@ -18,13 +18,10 @@ public class Card {
     @NotNull
     private String name;
 
-    @NotEmpty
-    @NotNull
+
     private String manaCost;
 
-    @NotEmpty
-    @NotNull
-    private Integer CMC;
+    private Integer Cmc;
 
     @NotEmpty
     @NotNull
@@ -69,6 +66,7 @@ public class Card {
     private String artist;
 
 
+    //GETTERS AND SETTERS
     public Integer getId() {
         return id;
     }
@@ -93,12 +91,12 @@ public class Card {
         this.manaCost = manaCost;
     }
 
-    public Integer getCMC() {
-        return CMC;
+    public Integer getCmc() {
+        return Cmc;
     }
 
-    public void setCMC(Integer CMC) {
-        this.CMC = CMC;
+    public void setCmc(Integer Cmc) {
+        this.Cmc = Cmc;
     }
 
     public byte[] getFrontImage() {
