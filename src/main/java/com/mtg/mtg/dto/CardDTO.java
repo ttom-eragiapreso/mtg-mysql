@@ -10,9 +10,9 @@ import java.util.List;
 
 public class CardDTO{
 
-    private String artist;
+    private Integer id;
 
-    private String color;
+    private String artist;
 
     private Integer cmc;
 
@@ -40,6 +40,45 @@ public class CardDTO{
 
     private MultipartFile multipartFile;
 
+    private byte[] frontImage;
+
+    public CardDTO(Card card) {
+        this.id = card.getId();
+        this.name = card.getName();
+        this.cmc = card.getCmc();
+        this.colors = card.getColors();
+        this.artist = card.getArtist();
+        this.colorIdentities = card.getColorIdentities();
+        this.flavour = card.getFlavour();
+        this.manaCost = card.getManaCost();
+        this.nameSet = card.getNameSet();
+        this.power = card.getPower();
+        this.toughness = card.getToughness();
+        this.rarity = card.getRarity();
+        this.textDescription = card.getDescription();
+        this.type = card.getType();
+        this.frontImage = card.getFrontImage();
+    }
+
+    public CardDTO() {
+    }
+
+
+    public byte[] getFrontImage() {
+        return frontImage;
+    }
+
+    public void setFrontImage(byte[] frontImage) {
+        this.frontImage = frontImage;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public MultipartFile getMultipartFile() {
         return multipartFile;
@@ -55,14 +94,6 @@ public class CardDTO{
 
     public void setArtist(String artist) {
         this.artist = artist;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public Integer getCmc() {

@@ -51,17 +51,47 @@ public class CardService {
         card.setToughness(cardDTO.getToughness());
         card.setRarity(cardDTO.getRarity());
         card.setType(cardDTO.getType());
-        card.setTextDescription(cardDTO.getTextDescription());
+        card.setDescription(cardDTO.getTextDescription());
+
+        return cardRepository.save(card);
+    }
+
+    public Card update(CardDTO cardDTO, Integer id) throws IOException {
+        Card card = getById(id);
+
+        if(!cardDTO.getMultipartFile().isEmpty()) card.setFrontImage(cardDTO.getMultipartFile().getBytes());
+        card.setArtist(cardDTO.getArtist());
+        card.setCmc(cardDTO.getCmc());
+        card.setFlavour(cardDTO.getFlavour());
+        card.setColors(cardDTO.getColors());
+        card.setName(cardDTO.getName());
+        card.setColorIdentities(cardDTO.getColorIdentities());
+        card.setManaCost(cardDTO.getManaCost());
+        card.setFrontImage(cardDTO.getMultipartFile().getBytes());
+        card.setNameSet(cardDTO.getNameSet());
+        card.setPower(cardDTO.getPower());
+        card.setToughness(cardDTO.getToughness());
+        card.setRarity(cardDTO.getRarity());
+        card.setType(cardDTO.getType());
+        card.setDescription(cardDTO.getTextDescription());
 
         return cardRepository.save(card);
     }
 
     public List<Card> filteredCards(Filter filter){
         List<Card> filteredCards = cardRepository.findAll();
-        if(filter.getName() != null) filteredCards = cardRepository.findByNameContainingIgnoreCase(filter.getName());
-        if(filter.getType() != null) filteredCards.retainAll(cardRepository.findByTypeContainingIgnoreCase(filter.getType()));
+        if(!filter.getName().equals("")) filteredCards = cardRepository.findByNameContainingIgnoreCase(filter.getName());
+        if(!filter.getType().equals("")) filteredCards.retainAll(cardRepository.findByTypeContainingIgnoreCase(filter.getType()));
 
-        if(filter.getColors() != null) filteredCards.retainAll(filteredCards.stream().filter(c -> new HashSet<>(c.getColors()).containsAll(filter.getColors())).collect(Collectors.toList()));
+        if(filter.getColors() != null) {
+            filteredCards.retainAll(filteredCards.stream()
+                    .filter(c -> new HashSet<>(c.getColors()).containsAll(filter.getColors()))
+                    .collect(Collectors.toList()));
+        }
+        if(!filter.getDescription().equals("")){
+            filteredCards.retainAll(cardRepository.findByDescriptionContainingIgnoreCase(filter.getDescription()));
+        }
+
         return filteredCards;
     }
 }

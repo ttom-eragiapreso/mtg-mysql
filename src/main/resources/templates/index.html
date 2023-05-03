@@ -17,9 +17,12 @@
       <div class="col" th:each="card : ${cards}">
         <div class="card overflow-hidden position-relative">
           <img th:src="@{|/files/${card.id}|}" class="card-img-top" th:alt="${card.name}">
-          <a
-                  th:href="@{|/cards/delete/${card.id}|}"><i
-                  class="fa-solid fa-x position-absolute bottom-0 end-0 text-danger"></i></a>
+          <a th:href="@{|/cards/delete/${card.id}|}">
+            <i class="fa-solid fa-x position-absolute bottom-0 end-0 text-danger"></i>
+          </a>
+          <a th:href="@{|/cards/edit/${card.id}|}">
+            <i class="fa-solid fa-pen position-absolute bottom-0 start-0 text-danger"></i>
+          </a>
         </div>
       </div>
     </div>

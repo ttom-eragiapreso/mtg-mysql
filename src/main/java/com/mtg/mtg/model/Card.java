@@ -23,8 +23,7 @@ public class Card {
 
     private Integer cmc;
 
-    @NotEmpty
-    @NotNull
+
     @Lob
     @Column(length = 16777215)
     private byte[] frontImage;
@@ -39,7 +38,7 @@ public class Card {
 
 
     @Lob
-    private String textDescription;
+    private String description;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Color> colors;
@@ -124,12 +123,12 @@ public class Card {
         this.type = type;
     }
 
-    public String getTextDescription() {
-        return textDescription;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTextDescription(String textDescription) {
-        this.textDescription = textDescription;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Color> getColors() {

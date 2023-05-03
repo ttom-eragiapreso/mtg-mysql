@@ -4,16 +4,14 @@
     <th:block th:replace="~{fragments/fragments :: head}"></th:block>
     <title>Aggiungi una nuova carta</title>
 </head>
-<body>
+<body th:with="action = ${card.id != null ? '/cards/edit/' + card.id : '/cards/create'}">
 
-<form th:action="@{/cards/create}"
+<form th:action="${action}"
       method="post"
       class="w-50 mx-auto py-5"
       th:object="${card}"
       enctype="multipart/form-data">
-    <ul>
-      <li th:each="error : ${#fields.globalErrors()}" th:text="${error}"></li>
-    </ul>
+  <input type="hidden" th:field="*{id}">
   <div class="mb-3">
     <label for="name" class="form-label">Nome</label>
     <input type="text"
@@ -32,7 +30,7 @@
   <div class="mb-3">
     <label for="frontImage" class="form-label">Immagine Frontale</label>
     <input type="file" class="form-control" id="frontImage"
-           th:field="*{multipartFile}">
+           th:field="*{multipartFile}" th:value="${card.getFrontImage != null ? card.getFrontImage : ''}">
   </div>
   <div class="mb-3">
     <label for="backImage" class="form-label">Immagine Posteriore</label>
@@ -45,7 +43,7 @@
   <div class="mb-3">
     <label for="text" class="form-label">Testo</label>
     <input type="text" class="form-control" id="text"
-           th:field="*{textDescription}">
+           th:field="*{description}">
   </div>
 <!--Tutti i colori-->
   <h3>Seleziona tutti i colori della carta</h3>

@@ -79,4 +79,20 @@ public class CardController {
         model.addAttribute("colors", colorService.getAll());
         return "/index";
     }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id, Model model){
+        model.addAttribute("card", new CardDTO(cardService.getById(id)));
+        model.addAttribute("colors", colorService.getAll());
+        model.addAttribute("rarities", rarityService.getAll());
+        model.addAttribute("color_identities", colorIdentityService.getAll());
+        return "/create";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String update(@PathVariable Integer id, @Valid @ModelAttribute CardDTO cardDTO, BindingResult bindingResult) throws IOException {
+        if(bindingResult.hasErrors()) return "/create";
+        Card card = cardService.update(cardDTO, id);
+        return "redirect:/cards";
+    }
 }

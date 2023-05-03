@@ -16,6 +16,8 @@
     <input type="text" id="name" th:field="*{name}">
     <label for="type">Cerca per tipo</label>
     <input type="text" id="type" th:field="*{type}">
+    <label for="description">Cerca per testo</label>
+    <input type="text" id="description" th:field="*{description}">
     <div class="mb-3 form-check" th:each="color : ${colors}">
       <input type="checkbox" class="form-check-input" th:id="|color_${color.id}|" th:field="*{colors}"
              th:value="${color.id}">
